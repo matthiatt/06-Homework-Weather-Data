@@ -1,9 +1,9 @@
-const icontElement = document.querySelector(".weatherIcon");
-const tempElement = document.querySelector(".tempValue p");
-const descElement = document.querySelector(".tempDescription p");
-const locationElement = document.querySelector(".location p");
-const notificationElement = document.querySelector(".notification");
-var inputValue = document.querySelector(".inputValue");
+const icontElement = document.getElementById("#weatherIcon");
+const tempElement = document.getElementById("#tempValue p");
+const descElement = document.getElementById("#tempDescription p");
+const locationElement = document.getElementById("#location p");
+const notificationElement = document.getElementById("#notification");
+var inputValue = document.getElementById("#inputValue");
 const weather = {};
 weather.temperature = {
     unit: "celsius"
@@ -32,33 +32,28 @@ function showError(error) {
 }
 
 function getWeather(latitude, longitude) {
-    let api = "https://api.openweathermap.org/data/2.5/weather?lat=$%7Blatitude%7D&lon=$%7Blongitude%7D&appid=d3d78704f63c9721f11068069d1c1516";
+    let api = `https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=d3d78704f63c9721f11068069d1c1516`;
 
     fetch(api)
         .then(function (response) {
             let data = response.json();
-            return data;
-        })
-        .then(function (data) {
             weather.temperature.value = Math.floor(data.main.temperature - kelvin);
             weather.description = data.weather[0].description;
             weather.iconId = data.weather[0].icon;
             weather.city = data.name;
             weather.country = data.sys.country;
         })
-        .then(function () {
-            displayWeather();
-        });
-}
+    displayWeather();
+};
 
 function displayWeather() {
-    icontElement.innerHTML = "<img src=";
-    icons / $(weather.iconId).jpg > "";
-    tempElement.innerHTML = "${weather.temperature.value}°<span>C</span>";
-    descElement.innerHTML = weather.description;
-    locationElement.innerHTML = "${weather.city}, ${weather.country}";
-    $(window.sessionStorage)["weather"] = "this will be here even after refresh";
-    var weather = $(window.sessionStorage)["weather"];
+    icontElement.weatherIcon = "<img src=";
+    icons / $ `{weather.iconId}.jpg` > "";
+    tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
+    descElement.tempDescription = weather.description;
+    locationElement.location = `${weather.city}, ${weather.country}`;
+    $ `window.sessionStorage` ["weather"] = "this will be here even after refresh";
+    var weather = $ `window.sessionStorage` ["weather"];
 }
 
 function celsiusToFahrenheit(temperature) {
@@ -71,33 +66,35 @@ tempElement.addEventListener("click", function () {
         let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
         fahrenheit = math.floor(fahrenheit);
 
-        tempElement.innerHTML = "${weather.temperature.value}°<span>C</span>";
+        tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
         weather.temperature.unit = "celsius";
     }
 });
-// var search = "city name";
-// fetch("api.openweathermap.org/data/2.5/forecast?q=" + inputValue.value + "&appid=d3d78704f63c9721f11068069d1c1516");
-// var cities = JSON.parse(localStorage.getItem("cities"));
-// if (cities === null) {
-//     cities = [];
-//     localStorage.setItem("cities", JSON.stringify(cities));
 
-//     fetch(api)
-//         .then(function (response) {
-//             let data = response.json();
-//             return data;
-//         })
-//         .then(function (data) {
-//             weather.temperature.value = Math.floor(data.main.temperature - kelvin);
-//             weather.description = data.weather[0].description;
-//             weather.iconId = data.weather[0].icon;
-//             weather.city = data.name;
-//             weather.country = data.sys.country;
-//         })
-//         .then(function () {
-//             displayWeather();
-//         });
-// }
+function getWeather(displayWeather) {
+    var search = "city name";
+    var cities = JSON.parse(localStorage.getItem("cities"));
+    if (cities === null) {
+        cities = [];
+        localStorage.setItem("cities", JSON.stringify(cities));
+
+        fetch(api)
+            .then(function (response) {
+                let data = response.json();
+                return data;
+            })
+            .then(function (data) {
+                weather.temperature.value = Math.floor(data.main.temperature - kelvin);
+                weather.description = data.weather[0].description;
+                weather.iconId = data.weather[0].icon;
+                weather.city = data.name;
+                weather.country = data.sys.country;
+            })
+            .then(function () {
+                displayWeather();
+            });
+    }
+}
 
 // function displayCities() {
 //     newDiv = $("<div>");

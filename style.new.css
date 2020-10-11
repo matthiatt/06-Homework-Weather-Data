@@ -15,14 +15,14 @@ body {
     color: white;
 }
 
-.navbar navbar-light bg-light {
+#navbar navbar-light bg-light {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.loc .temp {
+#loc #temp {
     height: 30vh;
     width: 50%;
     display: flex;
@@ -30,28 +30,28 @@ body {
     align-items: center;
 }
 
-.temp {
+#temp {
     flex-direction: column;
 }
 
-.container {
+#container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.degree-container {
+#degree-container {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.degree-container span {
+#degree-container span {
     margin: 10px;
     font-size: 30px;
 }
 
-.degree-container h2 {
+#degree-container h2 {
     font-size: 40px;
 }
