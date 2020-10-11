@@ -16,7 +16,7 @@ if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(setPosition, showError);
 } else {
     notificationElement.style.display = "block";
-    notificationElement.innerHTML = "<p>Browser Doesn't support Geolocation</p>";
+    notificationElement.notification = "<p>Browser Doesn't support Geolocation</p>";
 }
 
 function setPosition(position) {
@@ -28,7 +28,7 @@ function setPosition(position) {
 
 function showError(error) {
     notificationElement.style.display = "block";
-    notificationElement.innerHTML = "<p>${error.message}</p>";
+    notificationElement.notification = "<p>${error.message}</p>";
 }
 
 function getWeather(latitude, longitude) {
@@ -66,7 +66,7 @@ tempElement.addEventListener("click", function () {
         let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
         fahrenheit = math.floor(fahrenheit);
 
-        tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
+        tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
         weather.temperature.unit = "celsius";
     }
 });
