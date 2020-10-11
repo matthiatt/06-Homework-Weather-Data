@@ -1,0 +1,36 @@
+/* body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(rgb(44, 150, 160), rgb(45, 65, 137));
+    font-family: sans-serif;
+    color: white;
+}
+
+.navbar navbar-light bg-light {
+    background: linear-gradient(rgb(44, 150, 160), rgb(45, 65, 137));
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.col-8 bg-black {
+    margin: auto;
+    position: relative;
+    float: right;
+}
+
+.row border m-1 {
+    position: absolute;
+}
+
+.navbar-brand {
+    position: relative;
+}
+
+.form-inline {
+    position: relative;
+} */
