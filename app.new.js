@@ -1,8 +1,8 @@
-const icontElement = document.getElementById("#weatherIcon");
-const tempElement = document.getElementById("#tempValue p");
-const descElement = document.getElementById("#tempDescription p");
-const locationElement = document.getElementById("#location p");
-const notificationElement = document.getElementById("#notification");
+var icontElement = document.getElementById("#weatherIcon");
+var tempElement = document.getElementById("#tempValue p");
+var descElement = document.getElementById("#tempDescription p");
+var locationElement = document.getElementById("#location p");
+var notificationElement = document.getElementById("#notification");
 var inputValue = document.getElementById("#inputValue");
 const weather = {};
 weather.temperature = {
@@ -19,12 +19,13 @@ if ("geolocation" in navigator) {
     notificationElement.notification = "<p>Browser Doesn't support Geolocation</p>";
 }
 
-function setPosition(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
+function setPosition(currentLocation) {
+    var latitude = currentLocation.coords.latitude;
+    var longitude = currentLocation.coords.longitude;
 
     getWeather(latitude, longitude);
 }
+setPosition();
 
 function showError(error) {
     notificationElement.style.display = "block";
@@ -36,15 +37,15 @@ function getWeather(latitude, longitude) {
 
     fetch(api)
         .then(function (response) {
-            let data = response.json();
+            var data = response.json();
             weather.temperature.value = Math.floor(data.main.temperature - kelvin);
             weather.description = data.weather[0].description;
             weather.iconId = data.weather[0].icon;
             weather.city = data.name;
             weather.country = data.sys.country;
-        })
-    displayWeather();
-};
+        });
+}
+getWeather();
 
 function displayWeather() {
     icontElement.weatherIcon = "<img src=";
@@ -55,11 +56,13 @@ function displayWeather() {
     $ `window.sessionStorage` ["weather"] = "this will be here even after refresh";
     var weather = $ `window.sessionStorage` ["weather"];
 }
+displayWeather();
 
 function celsiusToFahrenheit(temperature) {
     return (temperature * 9 / 5) + 32;
 }
-tempElement.addEventListener("click", function () {
+celsiusToFahrenheit();
+function TempClick() {
     if (weather.temperature.value === undefined) return;
 
     if (weather.temperature.value === "celsius") {
@@ -69,7 +72,7 @@ tempElement.addEventListener("click", function () {
         tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
         weather.temperature.unit = "celsius";
     }
-});
+};
 
 function getWeather(displayWeather) {
     var search = "city name";
@@ -95,6 +98,7 @@ function getWeather(displayWeather) {
             });
     }
 }
+getWeather();
 
 // function displayCities() {
 //     newDiv = $("<div>");

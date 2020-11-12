@@ -40,7 +40,7 @@ $("#city-submit").on("click", function (e) {
     e.preventDefault;
     addCity();
     displayCities();
-})
+});
 $.ajax({
         url: queryURL,
         method: "GET",
