@@ -42,10 +42,17 @@ function getWeather(cityName) {
     localStorage.setItem("city", citySearched);
 
     $("#weatherNow").append(
-      "<div class= 'weatherSearched'>" + currentWeather + "</div>"
+      "<div class= 'weatherSearched'>" +
+        "Currently it is: " +
+        currentWeather +
+        "&degC " +
+        "</div>"
     );
     $("#weatherNow").append(
-      "<div class='weatherSearched'>" + citySearched + "</div>"
+      "<div class='weatherSearched'>" +
+        "Location searched: " +
+        citySearched +
+        "</div>"
     );
     fiveDayWeatherForcast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
@@ -75,12 +82,13 @@ function getWeather(cityName) {
         success: function (meta) {
           console.log(meta);
           var showFive = "";
-          showFive += "<h5>" + meta.city.name + "</h5>";
+          showFive +=
+            "<h5>" + meta.city.name + " " + "Five Day Forcast: " + "</h5>";
           $.each(meta.list, function (i, val) {
             showFive += "<p>";
+            // showFive += "<br />";
             showFive += "<br />";
-            showFive += "<br />";
-            showFive += "<b id='dayNumber'>Day " + i + "</b>: ";
+            showFive += "<b id='dayNumber'> Day" + i + "</b>: " + " ";
             showFive += "<br />";
             showFive += "<br />";
             showFive += val.main.temp + "&degC";
@@ -88,7 +96,9 @@ function getWeather(cityName) {
             showFive += "<br />";
             showFive +=
               "<span id='weatherDescription'> | " +
+              " " +
               val.weather[0].description +
+              " " +
               "</span>";
             showFive += "<br />";
             showFive += "<br />";
