@@ -19,14 +19,18 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </head>
   <body>
+    <div class="jumbotron jumbotron-fluid" id="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Weather Application</h1>
+    <p class="lead">Down below, you can search for a city to check the weather! Try and pass "Chicago" to give it a try!</p>
+  </div>
+</div>
     <div id="container1">
       <div class="row">
         <div class="col-md-4">
-          <label for="cityQuary"><h2>Search for a City</h2></label>
+          <label for="cityQuary" id="searchforcity"><h2>Search for a City</h2></label>
         </div>
       </div>
-    </div>
-    <div class="container2">
       <div class="input-group mb-3">
         <input
           type="search"
@@ -42,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="container3">
+    <div id="container3">
       <ul id="list"></ul>
       <div class="searchHistory"></div>
     <div class="col-md-8">

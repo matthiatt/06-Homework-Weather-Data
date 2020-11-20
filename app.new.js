@@ -1,104 +1,104 @@
-var icontElement = document.getElementById("#weatherIcon");
-var tempElement = document.getElementById("#tempValue p");
-var descElement = document.getElementById("#tempDescription p");
-var locationElement = document.getElementById("#location p");
-var notificationElement = document.getElementById("#notification");
-var inputValue = document.getElementById("#inputValue");
-const weather = {};
-weather.temperature = {
-    unit: "celsius"
-}
+// var icontElement = document.getElementById("#weatherIcon");
+// var tempElement = document.getElementById("#tempValue p");
+// var descElement = document.getElementById("#tempDescription p");
+// var locationElement = document.getElementById("#location p");
+// var notificationElement = document.getElementById("#notification");
+// var inputValue = document.getElementById("#inputValue");
+// const weather = {};
+// weather.temperature = {
+//     unit: "celsius"
+// }
 
-const kelvin = 273;
-const key = "d3d78704f63c9721f11068069d1c1516";
+// const kelvin = 273;
+// const key = "d3d78704f63c9721f11068069d1c1516";
 
-if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(setPosition, showError);
-} else {
-    notificationElement.style.display = "block";
-    notificationElement.notification = "<p>Browser Doesn't support Geolocation</p>";
-}
+// if ("geolocation" in navigator) {
+//     navigator.geolocation.getCurrentPosition(setPosition, showError);
+// } else {
+//     notificationElement.style.display = "block";
+//     notificationElement.notification = "<p>Browser Doesn't support Geolocation</p>";
+// }
 
-function setPosition(currentLocation) {
-    var latitude = currentLocation.coords.latitude;
-    var longitude = currentLocation.coords.longitude;
+// function setPosition(currentLocation) {
+//     var latitude = currentLocation.coords.latitude;
+//     var longitude = currentLocation.coords.longitude;
 
-    getWeather(latitude, longitude);
-}
-setPosition();
+//     getWeather(latitude, longitude);
+// }
+// setPosition();
 
-function showError(error) {
-    notificationElement.style.display = "block";
-    notificationElement.notification = "<p>${error.message}</p>";
-}
+// function showError(error) {
+//     notificationElement.style.display = "block";
+//     notificationElement.notification = "<p>${error.message}</p>";
+// }
 
-function getWeather(latitude, longitude) {
-    let api = `https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=d3d78704f63c9721f11068069d1c1516`;
+// function getWeather(latitude, longitude) {
+//     let api = `https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=d3d78704f63c9721f11068069d1c1516`;
 
-    fetch(api)
-        .then(function (response) {
-            var data = response.json();
-            weather.temperature.value = Math.floor(data.main.temperature - kelvin);
-            weather.description = data.weather[0].description;
-            weather.iconId = data.weather[0].icon;
-            weather.city = data.name;
-            weather.country = data.sys.country;
-        });
-}
-getWeather();
+//     fetch(api)
+//         .then(function (response) {
+//             var data = response.json();
+//             weather.temperature.value = Math.floor(data.main.temperature - kelvin);
+//             weather.description = data.weather[0].description;
+//             weather.iconId = data.weather[0].icon;
+//             weather.city = data.name;
+//             weather.country = data.sys.country;
+//         });
+// }
+// getWeather();
 
-function displayWeather() {
-    icontElement.weatherIcon = "<img src=";
-    icons / $ `{weather.iconId}.jpg` > "";
-    tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
-    descElement.tempDescription = weather.description;
-    locationElement.location = `${weather.city}, ${weather.country}`;
-    $ `window.sessionStorage` ["weather"] = "this will be here even after refresh";
-    var weather = $ `window.sessionStorage` ["weather"];
-}
-displayWeather();
+// function displayWeather() {
+//     icontElement.weatherIcon = "<img src=";
+//     icons / $ `{weather.iconId}.jpg` > "";
+//     tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
+//     descElement.tempDescription = weather.description;
+//     locationElement.location = `${weather.city}, ${weather.country}`;
+//     $ `window.sessionStorage` ["weather"] = "this will be here even after refresh";
+//     var weather = $ `window.sessionStorage` ["weather"];
+// }
+// displayWeather();
 
-function celsiusToFahrenheit(temperature) {
-    return (temperature * 9 / 5) + 32;
-}
-celsiusToFahrenheit();
-function TempClick() {
-    if (weather.temperature.value === undefined) return;
+// function celsiusToFahrenheit(temperature) {
+//     return (temperature * 9 / 5) + 32;
+// }
+// celsiusToFahrenheit();
+// function TempClick() {
+//     if (weather.temperature.value === undefined) return;
 
-    if (weather.temperature.value === "celsius") {
-        let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
-        fahrenheit = math.floor(fahrenheit);
+//     if (weather.temperature.value === "celsius") {
+//         let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
+//         fahrenheit = math.floor(fahrenheit);
 
-        tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
-        weather.temperature.unit = "celsius";
-    }
-};
+//         tempElement.tempValue = `${weather.temperature.value}°<span>C</span>`;
+//         weather.temperature.unit = "celsius";
+//     }
+// };
 
-function getWeather(displayWeather) {
-    var search = "city name";
-    var cities = JSON.parse(localStorage.getItem("cities"));
-    if (cities === null) {
-        cities = [];
-        localStorage.setItem("cities", JSON.stringify(cities));
+// function getWeather(displayWeather) {
+//     var search = "city name";
+//     var cities = JSON.parse(localStorage.getItem("cities"));
+//     if (cities === null) {
+//         cities = [];
+//         localStorage.setItem("cities", JSON.stringify(cities));
 
-        fetch(api)
-            .then(function (response) {
-                let data = response.json();
-                return data;
-            })
-            .then(function (data) {
-                weather.temperature.value = Math.floor(data.main.temperature - kelvin);
-                weather.description = data.weather[0].description;
-                weather.iconId = data.weather[0].icon;
-                weather.city = data.name;
-                weather.country = data.sys.country;
-            })
-            .then(function () {
-                displayWeather();
-            });
-    }
-}
-getWeather();
+//         fetch(api)
+//             .then(function (response) {
+//                 let data = response.json();
+//                 return data;
+//             })
+//             .then(function (data) {
+//                 weather.temperature.value = Math.floor(data.main.temperature - kelvin);
+//                 weather.description = data.weather[0].description;
+//                 weather.iconId = data.weather[0].icon;
+//                 weather.city = data.name;
+//                 weather.country = data.sys.country;
+//             })
+//             .then(function () {
+//                 displayWeather();
+//             });
+//     }
+// }
+// getWeather();
 
 // function displayCities() {
 //     newDiv = $("<div>");

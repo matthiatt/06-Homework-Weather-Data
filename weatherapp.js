@@ -83,8 +83,13 @@ function getWeather(cityName) {
           console.log(meta);
           var showFive = "";
           showFive +=
-            "<h5>" + meta.city.name + " " + "Five Day Forcast: " + "</h5>";
+            "<h5 'id=h5'>" +
+            meta.city.name +
+            " " +
+            "Five Day Forcast: " +
+            "</h5>";
           $.each(meta.list, function (i, val) {
+            // Add these in weather cards : per day - for loop or all under one function
             showFive += "<p>";
             // showFive += "<br />";
             showFive += "<br />";
